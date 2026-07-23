@@ -25,8 +25,8 @@ const PLAN_COLORS: Record<string, string> = {
 
 const PLAN_LABELS: Record<string, string> = {
   free:  'Free',
-  pro:   'Pro ⚡',
-  ultra: 'Ultra 👑',
+  pro:   'Pro',
+  ultra: 'Ultra',
 };
 
 export default function Sidebar() {
@@ -36,7 +36,7 @@ export default function Sidebar() {
 
   async function handleSignOut() {
     await signOut();
-    toast.success('Paalam! 👋');
+    toast.success('Paalam!');
     navigate('/login');
   }
 
@@ -162,7 +162,7 @@ export default function Sidebar() {
           </div>
           {!collapsed && (
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)', truncate: 'true', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {profile?.display_name ?? 'User'}
               </div>
               <span className={`badge ${PLAN_COLORS[profile?.plan ?? 'free']}`} style={{ fontSize: 10 }}>
