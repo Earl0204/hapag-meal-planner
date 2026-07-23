@@ -43,8 +43,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .from('profiles')
       .select('id,username,display_name,avatar_url,plan,ai_credits_used,ai_credits_limit,household_size,dietary_preferences,onboarded')
       .eq('id', userId)
-      .single();
+      .maybeSingle();
     if (data) setProfile(data as Profile);
+    else {
+      // Fallback profile if record not yet created by DB trigger
+      setProfile({
+        id: userId,
+        username: null,
+        display_name: 'Pamilya User',
+        avatar_url: null,
+        plan: 'free',
+        ai_credits_used: 0,
+        ai_credits_limit: 10,
+        household_size: 3,
+        dietary_preferences: [],
+        onboarded: true,
+      });
+    }
   }
 
   async function refreshProfile() {
