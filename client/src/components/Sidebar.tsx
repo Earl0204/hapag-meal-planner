@@ -55,31 +55,75 @@ export default function Sidebar() {
         zIndex: 10,
       }}
     >
-      {/* Logo */}
+      {/* Header Logo & Collapse Button */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        gap: 10,
-        padding: collapsed ? '20px 14px' : '20px 18px',
+        justifyContent: collapsed ? 'center' : 'space-between',
+        padding: collapsed ? '14px 10px' : '16px 16px',
         borderBottom: 'var(--glass-border)',
         transition: 'padding 200ms ease',
+        minHeight: 64,
       }}>
-        <div style={{
-          width: 34, height: 34, borderRadius: 10,
-          overflow: 'hidden',
-          flexShrink: 0,
-          border: '1px solid rgba(245,166,35,0.2)',
-          boxShadow: '0 4px 12px rgba(245,166,35,0.15)',
-        }}>
-          <img src="/icon.png" alt="Hapag" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-        </div>
-        {!collapsed && (
-          <div>
-            <div style={{ fontWeight: 800, fontSize: 16, color: 'var(--text)', lineHeight: 1.1 }}>hapag</div>
-            <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>Ang Hapag ng Pamilya</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{
+            width: 34, height: 34, borderRadius: 10,
+            overflow: 'hidden',
+            flexShrink: 0,
+            border: '1px solid rgba(245,166,35,0.2)',
+            boxShadow: '0 4px 12px rgba(245,166,35,0.15)',
+          }}>
+            <img src="/icon.png" alt="Hapag" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
+          {!collapsed && (
+            <div>
+              <div style={{ fontWeight: 800, fontSize: 16, color: 'var(--text)', lineHeight: 1.1 }}>hapag</div>
+              <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>Ang Hapag ng Pamilya</div>
+            </div>
+          )}
+        </div>
+
+        {!collapsed && (
+          <button
+            onClick={() => setCollapsed(true)}
+            style={{
+              width: 28, height: 28,
+              borderRadius: 8,
+              background: 'var(--surface-hover)',
+              border: '1px solid var(--border)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: 'pointer',
+              color: 'var(--text-muted)',
+              transition: 'all var(--transition)',
+            }}
+            title="Collapse sidebar"
+          >
+            <ChevronLeft size={15} />
+          </button>
         )}
       </div>
+
+      {/* When collapsed, show expand button cleanly below header */}
+      {collapsed && (
+        <div style={{ padding: '8px 10px', display: 'flex', justifyContent: 'center' }}>
+          <button
+            onClick={() => setCollapsed(false)}
+            style={{
+              width: 32, height: 32,
+              borderRadius: 8,
+              background: 'var(--surface-hover)',
+              border: '1px solid var(--border)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: 'pointer',
+              color: 'var(--text-muted)',
+              transition: 'all var(--transition)',
+            }}
+            title="Expand sidebar"
+          >
+            <ChevronLeft size={15} style={{ transform: 'rotate(180deg)' }} />
+          </button>
+        </div>
+      )}
 
       {/* Nav */}
       <nav style={{ flex: 1, padding: '12px 8px', display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -198,31 +242,6 @@ export default function Sidebar() {
           {!collapsed && 'Sign Out'}
         </button>
       </div>
-
-      {/* Collapse toggle */}
-      <button
-        onClick={() => setCollapsed(c => !c)}
-        style={{
-          position: 'absolute',
-          top: 22,
-          right: -12,
-          width: 24, height: 24,
-          borderRadius: '50%',
-          background: 'var(--surface)',
-          border: '1px solid var(--border)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          cursor: 'pointer',
-          zIndex: 20,
-          transition: 'all var(--transition)',
-          color: 'var(--text-muted)',
-        }}
-        title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-      >
-        <ChevronLeft
-          size={13}
-          style={{ transform: collapsed ? 'rotate(180deg)' : 'none', transition: 'transform 200ms ease' }}
-        />
-      </button>
     </aside>
   );
 }

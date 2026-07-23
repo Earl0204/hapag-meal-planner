@@ -587,3 +587,24 @@ CREATE POLICY "payments_owner" ON public.payments FOR SELECT USING (auth.uid() =
 CREATE POLICY "price_alerts_owner" ON public.price_alerts FOR ALL USING (auth.uid() = user_id);
 CREATE POLICY "community_price_owner" ON public.community_price_reports FOR ALL USING (auth.uid() = reporter_id);
 
+-- =====================================================
+-- SEED DATA: DA BANTAY PRESYO MARKET PRICES
+-- =====================================================
+INSERT INTO public.market_prices (commodity_name, commodity_key, category, country_code, region, market_type, price_min, price_max, price_avg, unit, source, source_url, is_latest) VALUES
+  ('Baboy (Liempo)', 'pork_liempo', 'Karne', 'PH', 'NCR', 'palengke', 340.00, 380.00, 360.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Baboy (Kasim)', 'pork_kasim', 'Karne', 'PH', 'NCR', 'palengke', 300.00, 340.00, 320.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Manok (Whole Chicken)', 'chicken_whole', 'Karne', 'PH', 'NCR', 'palengke', 160.00, 190.00, 175.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Bangus (Milkfish)', 'fish_bangus', 'Isda', 'PH', 'NCR', 'palengke', 180.00, 220.00, 200.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Tilapia', 'fish_tilapia', 'Isda', 'PH', 'NCR', 'palengke', 120.00, 150.00, 135.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Galunggong (Local)', 'fish_galunggong', 'Isda', 'PH', 'NCR', 'palengke', 200.00, 240.00, 220.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Sibuyas Pula (Red Onion)', 'veg_red_onion', 'Gulay', 'PH', 'NCR', 'palengke', 90.00, 130.00, 110.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Sibuyas Puti (White Onion)', 'veg_white_onion', 'Gulay', 'PH', 'NCR', 'palengke', 80.00, 120.00, 95.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Bawang (Garlic)', 'veg_garlic', 'Gulay', 'PH', 'NCR', 'palengke', 120.00, 160.00, 140.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Kamatis (Tomato)', 'veg_tomato', 'Gulay', 'PH', 'NCR', 'palengke', 60.00, 90.00, 75.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Kalabasa (Squash)', 'veg_squash', 'Gulay', 'PH', 'NCR', 'palengke', 40.00, 60.00, 50.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Bigas (Premium Rice)', 'rice_premium', 'Bigas', 'PH', 'NCR', 'palengke', 46.00, 52.00, 48.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Bigas (Well-Milled)', 'rice_well_milled', 'Bigas', 'PH', 'NCR', 'palengke', 42.00, 46.00, 44.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Itlog (Medium Egg)', 'egg_medium', 'Itlog', 'PH', 'NCR', 'palengke', 7.00, 9.00, 8.00, 'pc', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE),
+  ('Saging (Lakatan)', 'fruit_lakatan', 'Prutas', 'PH', 'NCR', 'palengke', 70.00, 90.00, 80.00, 'kg', 'DA Bantay Presyo', 'https://www.da.gov.ph', TRUE);
+
+
