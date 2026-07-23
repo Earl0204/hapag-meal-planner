@@ -2,9 +2,9 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, BookOpen, Package, CalendarDays,
   ShoppingCart, TrendingUp, User, LogOut, ChevronLeft,
-  Zap,
+  Zap, Sun, Moon,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
@@ -31,8 +31,24 @@ const PLAN_LABELS: Record<string, string> = {
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    return (localStorage.getItem('hapag-theme') as 'dark' | 'light') || 'dark';
+  });
   const { profile, signOut } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (theme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    localStorage.setItem('hapag-theme', theme);
+  }, [theme]);
+
+  function toggleTheme() {
+    setTheme(t => (t === 'dark' ? 'light' : 'dark'));
+  }
 
   async function handleSignOut() {
     await signOut();
@@ -215,6 +231,34 @@ export default function Sidebar() {
             </div>
           )}
         </NavLink>
+
+        {/* Theme Toggle */}
+        <button
+          onClick={toggleTheme}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            padding: collapsed ? '8px 13px' : '8px 12px',
+            width: '100%',
+            borderRadius: 8,
+            background: 'transparent',
+            color: 'var(--text-muted)',
+            fontSize: 13,
+            marginTop: 4,
+            transition: 'all var(--transition)',
+            cursor: 'pointer',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            border: 'none',
+          }}
+          onMouseEnter={e => e.currentTarget.style.background = 'var(--surface-hover)'}
+          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+          title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+        >
+          {theme === 'dark' ? <Sun size={16} style={{ flexShrink: 0 }} color="var(--warning)" /> : <Moon size={16} style={{ flexShrink: 0 }} color="var(--accent)" />}
+          {!collapsed && (theme === 'dark' ? 'Light Mode' : 'Dark Mode')}
+        </button>
 
         {/* Sign out */}
         <button
