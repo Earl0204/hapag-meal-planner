@@ -67,7 +67,7 @@ export default function PantryPage() {
         user_id: user!.id,
         household_id: null,
       } as any);
-      toast.success(`"${form.name}" naidagdag sa pantry! 🎉`);
+      toast.success(`"${form.name}" naidagdag sa pantry!`);
       setForm(EMPTY_FORM);
       setShowForm(false);
     } catch {
@@ -99,10 +99,14 @@ export default function PantryPage() {
     <div className="page-content">
       <div className="section-header" style={{ marginBottom: 24 }}>
         <div>
-          <h1>Aming Pantry 🗄️</h1>
+          <h1 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Package size={24} /> Aming Pantry
+          </h1>
           <p>
             {items?.length ?? 0} items · {expiringCount > 0 && (
-              <span style={{ color: 'var(--warning)' }}>⚠️ {expiringCount} malapit mag-expire</span>
+              <span style={{ color: 'var(--warning)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                <AlertTriangle size={13} color="var(--warning)" /> {expiringCount} malapit mag-expire
+              </span>
             )}
           </p>
         </div>

@@ -1,4 +1,4 @@
-import { Clock, Users, Star, ChefHat } from 'lucide-react';
+import { Clock, Users, Star, ChefHat, Sparkles } from 'lucide-react';
 import type { Recipe } from '../hooks/useRecipes';
 
 const DIFFICULTY_COLORS: Record<string, string> = {
@@ -60,9 +60,8 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
           <div style={{
             width: '100%', height: '100%',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 48, opacity: 0.3,
           }}>
-            🍽️
+            <ChefHat size={36} color="var(--text-muted)" style={{ opacity: 0.35 }} />
           </div>
         )}
         {/* Badges */}
@@ -71,7 +70,9 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
             {recipe.difficulty_local ?? recipe.difficulty}
           </span>
           {recipe.is_ai_generated && (
-            <span className="badge badge-accent" style={{ fontSize: 10 }}>✨ AI</span>
+            <span className="badge badge-accent" style={{ fontSize: 10, display: 'flex', alignItems: 'center', gap: 3 }}>
+              <Sparkles size={10} /> AI
+            </span>
           )}
         </div>
         {/* Cost */}

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
+import { UtensilsCrossed } from 'lucide-react';
 import { queryClient } from './lib/queryClient';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Sidebar from './components/Sidebar';
@@ -30,9 +31,8 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
           background: 'linear-gradient(135deg, var(--accent), #e07a1f)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           animation: 'pulse 1.5s ease-in-out infinite',
-          fontSize: 24,
         }}>
-          🍽️
+          <UtensilsCrossed size={24} color="#0e0c08" strokeWidth={2.5} />
         </div>
         <div style={{ fontSize: 14, color: 'var(--text-muted)' }}>Ini-load ang Hapag...</div>
         <style>{`@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(0.95)} }`}</style>

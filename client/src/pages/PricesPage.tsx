@@ -58,7 +58,9 @@ export default function PricesPage() {
     <div className="page-content">
       <div className="section-header" style={{ marginBottom: 24 }}>
         <div>
-          <h1>Bantay Presyo 📊</h1>
+          <h1 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <TrendingUp size={24} /> Bantay Presyo
+          </h1>
           <p>
             Pinakabagong presyo ng palengke at supermarket
             {data?.updated_at && (

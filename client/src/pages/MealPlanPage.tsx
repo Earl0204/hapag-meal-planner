@@ -29,7 +29,7 @@ export default function MealPlanPage() {
   async function handleToggle(id: string, is_cooked: boolean) {
     try {
       await toggleCooked.mutateAsync({ id, is_cooked: !is_cooked });
-      toast.success(is_cooked ? 'Inalis sa luto' : '✅ Nailuto na!');
+      toast.success(is_cooked ? 'Inalis sa luto' : 'Nailuto na!');
     } catch {
       toast.error('Hindi na-update. Subukan ulit.');
     }
@@ -48,7 +48,9 @@ export default function MealPlanPage() {
       {/* Header */}
       <div className="section-header" style={{ marginBottom: 24 }}>
         <div>
-          <h1>Lingguhang Meal Plan 📅</h1>
+          <h1 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <CalendarDays size={24} /> Lingguhang Meal Plan
+          </h1>
           {currentPlan.data && (
             <p>
               {format(weekStart, 'MMM d')} – {format(addDays(weekStart, 6), 'MMM d, yyyy')}
